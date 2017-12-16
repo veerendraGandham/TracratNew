@@ -2,7 +2,9 @@ package com.mk.tracrat.controller;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,12 +54,14 @@ public class UserInsertController {
 
 	// Inserting user data into data base
 	@PostMapping("/user_home")
+	//@ResponseBody
+	//@Produces(MediaType.))
 	public ModelAndView userInsert(@ModelAttribute UserVo cmd) {
 		UserDto dto = new UserDto();
 		BeanUtils.copyProperties(cmd, dto);
 		String result = service.userInsert(dto);
-		String json = JsonUtil.javaToJson(result);
-		return new ModelAndView("address", "result", json);
+		//String json = JsonUtil.javaToJson(result);
+		return new ModelAndView("address", "result", result);
 	}
 
 	// Inserting user address data into database
@@ -89,5 +93,11 @@ public class UserInsertController {
 		String json = JsonUtil.javaToJson(responce);
 		return new ModelAndView("welcome", "responce", responce);
 
+	}
+	
+	@GetMapping(value="/getUsers", produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> getUsers() {
+		String user = "Senthil";
+		return new ResponseEntity<String>(user, HttpStatus.OK);
 	}
 }

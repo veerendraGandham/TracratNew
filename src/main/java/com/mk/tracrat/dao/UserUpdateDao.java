@@ -5,6 +5,6 @@ import com.mk.tracrat.dto.UserUpdateDto;
 
 public interface UserUpdateDao {
 
-	int userUpdate(UserUpdateDto dto);
+	int userUpdate(UserDto dto);
 
 }

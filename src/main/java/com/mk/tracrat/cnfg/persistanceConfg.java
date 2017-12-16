@@ -18,7 +18,7 @@ public class persistanceConfg {
 		ds.setUrl("jdbc:mysql://localhost:3306/tracrat");
 
 		ds.setUsername("root");
-		ds.setPassword("root");
+		ds.setPassword("devInfoSec@999");
 		return ds;
 	}
 

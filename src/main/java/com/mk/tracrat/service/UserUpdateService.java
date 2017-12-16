@@ -11,7 +11,7 @@ public class UserUpdateService {
 @Autowired
 private UserUpdateDao dao; 
 
-	public String userUpdate(UserUpdateDto dto) {
+	public String userUpdate(UserDto dto) {
 		System.out.println("service1 update dto" + dto);
 			int count = dao.userUpdate(dto);
 			System.out.println("service2 update dto" + dto);

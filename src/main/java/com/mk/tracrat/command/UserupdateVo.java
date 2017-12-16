@@ -2,7 +2,6 @@ package com.mk.tracrat.command;
 
 public class UserupdateVo {
 	private int user_id;
-	
 	private String first_name;
 	private String last_name;
 	private String age;
