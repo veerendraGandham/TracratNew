@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.mk.tracrat.dao.UserUpdateDao;
 import com.mk.tracrat.dto.UserDto;
+import com.mk.tracrat.dto.UserRoleDto;
 import com.mk.tracrat.dto.UserUpdateDto;
 @Service
 public class UserUpdateService {
@@ -19,5 +20,12 @@ private UserUpdateDao dao;
 				return "User Updation is failed";
 			else
 				return "User Updation is success";	}
+
+	public String userRole(UserRoleDto dto) {
+int count=dao.userRole(dto);
+if (count == 0)
+	return "User Role Updation is failed";
+else
+	return "User Role Updation is success";	}
 
 }

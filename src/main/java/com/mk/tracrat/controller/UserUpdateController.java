@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mk.tracrat.command.UserRoleVo;
 import com.mk.tracrat.command.UserVo;
 import com.mk.tracrat.dto.UserDto;
+import com.mk.tracrat.dto.UserRoleDto;
 import com.mk.tracrat.service.UserUpdateService;
 import com.mk.tracrat.util.JsonUtil;
 
@@ -23,7 +25,7 @@ public class UserUpdateController {
 		return new ModelAndView("updateHome");
 	}
 
-	@GetMapping("/user_update_home")
+	@GetMapping("/update_user_home")
 	public ModelAndView userUpdate() {
 		return new ModelAndView("updateUser");
 	}
@@ -34,7 +36,7 @@ public class UserUpdateController {
 	}
 
 	// show user role form
-	@GetMapping("/user_update_role")
+	@GetMapping("/update_user_role")
 	public ModelAndView userRole() {
 		return new ModelAndView("updateUserRole");
 	}
@@ -55,13 +57,14 @@ public class UserUpdateController {
 		String json = JsonUtil.javaToJson(result);
 		return new ModelAndView("welcome", "result", json);
 	}
-	/*@PostMapping("/user_update_home")
-	public ModelAndView userUpdate(@ModelAttribute UserupdateVo cmd) {
-		UserUpdateDto dto = new UserUpdateDto();
-		BeanUtils.copyProperties(cmd, dto);
-		System.out.println("dto update " + dto);
-		String result = service.userUpdate(dto);
-		String json = JsonUtil.javaToJson(result);
-		return new ModelAndView("welcome", "result", json);
-	}*/
+	//Inserting user role data into database
+		@PostMapping("/user_update_role")
+		public ModelAndView userUpdateRole(@ModelAttribute UserRoleVo vo) {
+			UserRoleDto dto = new UserRoleDto();
+			BeanUtils.copyProperties(vo, dto);
+			String responce = service.userRole(dto);
+			String json = JsonUtil.javaToJson(responce);
+			return new ModelAndView("welcome", "responce", responce);
+
+		}
 }
